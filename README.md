@@ -11,7 +11,7 @@ Online ticket reservation system.
 ## How to contribute  
 1. Create your own branch: `git checkout -b your/branch-name`  
 2. Do your changes.  
-3. Create new merge request (here)[https://gitlab.com/asrulsibaoel/e-ticketing/merge_requests]  
+3. Create new merge request [here](https://gitlab.com/asrulsibaoel/e-ticketing/merge_requests)  
   
 ## License  
 MIT Alrights reserved.
