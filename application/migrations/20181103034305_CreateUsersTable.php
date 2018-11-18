@@ -43,7 +43,7 @@ class Migration_CreateUsersTable extends CI_Migration {
 			),
 		));
 		$this->dbforge->add_key('id', TRUE);
-		$this->dbforge->create_table("users");
+		$this->dbforge->create_table($tableName);
 
 		// // Adding a Column to a Table
 		// $fields = array(
@@ -55,7 +55,7 @@ class Migration_CreateUsersTable extends CI_Migration {
 	public function down()
 	{
 		// Dropping a table
-		$this->dbforge->drop_table('users');
+		$this->dbforge->drop_table($tableName);
 
 		// // Dropping a Column From a Table
 		// $this->dbforge->drop_column('table_name', 'column_to_drop');
