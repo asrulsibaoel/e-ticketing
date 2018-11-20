@@ -7,7 +7,7 @@
  */
 class Migration_CreateUsersTable extends CI_Migration {
 
-	public static $tableName = "users";
+	public $tableName = "users";
 
 	public function up()
 	{
@@ -20,7 +20,7 @@ class Migration_CreateUsersTable extends CI_Migration {
 			),
 			'username' => array(
 				'type' => 'VARCHAR',
-				'constraint' => 100,
+				'constraint' => 25,
 			),
 			'name' => array(
 				'type' =>'VARCHAR',
@@ -28,7 +28,8 @@ class Migration_CreateUsersTable extends CI_Migration {
 				'null' => TRUE,
 			),
 			'email' => array(
-				'type' => 'TEXT',
+				'type' => 'VARCHAR',
+				'constraint' => 50,
 			),
 			'password' => array(
 				'type' => 'TEXT',
@@ -43,7 +44,7 @@ class Migration_CreateUsersTable extends CI_Migration {
 			),
 		));
 		$this->dbforge->add_key('id', TRUE);
-		$this->dbforge->create_table($tableName);
+		$this->dbforge->create_table($this->tableName);
 
 		// // Adding a Column to a Table
 		// $fields = array(
@@ -55,7 +56,7 @@ class Migration_CreateUsersTable extends CI_Migration {
 	public function down()
 	{
 		// Dropping a table
-		$this->dbforge->drop_table($tableName);
+		// $this->dbforge->drop_table($this->tableName);
 
 		// // Dropping a Column From a Table
 		// $this->dbforge->drop_column('table_name', 'column_to_drop');
