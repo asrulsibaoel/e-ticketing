@@ -20,6 +20,11 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		header("Access-Control-Allow-Origin: *");
+		$data = [
+			'nama' => "Asrul"
+		];
+		$this->template->set('title', 'Home');
+		$this->template->load('home' , $data);
 	}
 }
