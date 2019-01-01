@@ -25,6 +25,6 @@ class Welcome extends CI_Controller {
 			'nama' => "Asrul"
 		];
 		$this->template->set('title', 'Home');
-		$this->template->load('home' , $data);
+		$this->template->load('edit_profile' , $data);
 	}
 }
