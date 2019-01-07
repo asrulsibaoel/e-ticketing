@@ -12,22 +12,34 @@ class Users extends CI_Controller {
 	{
 		header("Access-Control-Allow-Origin: *");
 		$data['tampil'] = $this->users_model->view();
+		
 		$this->template->set('title', 'Home');
 		$this->template->load('home' , $data);
 	}
 
+
+	/**
+	 * TODO: 
+	 * Kasih blok try catch.
+	 * Tambahin validasi kalo username / password kosong.
+	 */
 	public function validasi(){
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
-		
 		$row = $this->users_model->get($username);
-		if ($row->password == $password){						
-			$this->session->set_userdata('username',$row->username);			
-			redirect('users');
+		if (!empty($row)) {
+			if ($row->password == md5($password)){
+				$this->session->set_userdata('username',$row->username);
+				$this->session->set_userdata('userId',$row->id);
+				redirect('users');
+			} else {
+				$this->session->set_flashdata('message','Data tidak benar');
+				redirect('users');
+			}	
 		} else {
-			$this->session->set_flashdata('message','Data tidak benar');
-			redirect('users');
-		}		
+			throw new Error("User not found");
+		}
+		
 	}
 
 	public function logout(){
@@ -44,6 +56,9 @@ class Users extends CI_Controller {
 		$this->template->load('edit_profile' , $data);
 	}
 
+	/**
+	 * TODO: Kasih blok try catch
+	 */
 	public function do_upload_edit()
   {
           $data = array(

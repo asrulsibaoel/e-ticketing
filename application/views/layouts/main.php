@@ -1,7 +1,6 @@
 <?php
-if($tampil){
-	$session = $this->session->userdata('username');
-} ?>
+$session = (empty($this->session->userdata('username'))) ? null : $this->session->userdata('username');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +41,9 @@ if($tampil){
 				</li>
 			</ul>
 			<?php
-				if($session == true){ ?>
+				if($session == true){ // ini ngapaaa yak?? d atas variable $session tak liat tadi d set username, kenapa cek nya boolean?
+					//gpp lah sementara sing penting jalan disik. tp sbener e bukan best practice.
+				?>
 				<div class="dropdown">
 					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<?php echo $session; ?>
