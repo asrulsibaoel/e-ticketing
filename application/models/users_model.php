@@ -8,13 +8,31 @@ class users_model extends CI_Model {
 		parent::__construct();
 		$this->load->database();
 	}
-	public function getAll(){
-		$data = $this->db->get('users');
-		return $data->result();
+
+	public function get($username)
+	{	
+		$this->db->where('username',$username);
+		$query = $this->db->get('users');
+		return $query->row();		
 	}
 
-	public function get($id) {
-		$query = $this->db->get_where("users", [ "id" => $id ])->row();
-		return $query;
+	public function getdata()
+	{
+		$username = $this->session->userdata('username');
+		$this->db->where('username',$username);
+		$query = $this->db->get('users');
+		return $query->row();
 	}
+
+	public function view(){
+		return $this->db->get('users')->result();
+	}
+
+	public function edit($id,$data){
+		$row = $this->db->where('username',$id)->get('users')->row();
+		unlink('./assets/img/'.$row->photo);
+		$this->db->where('username', $id);
+		$this->db->update('users', $data);
+	  }
+
 }

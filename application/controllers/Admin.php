@@ -25,6 +25,6 @@ class Admin extends CI_Controller {
 			'nama' => "Asrul"
 		];
 		$this->template->set('title', 'Admin Dashboard');
-		$this->template->load('home' , $data, 'admin');
+		$this->template->load('admin/vendor' , $data, 'admin');
 	}
 }

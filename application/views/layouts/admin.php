@@ -72,7 +72,7 @@
                   <li><!-- start message -->
                     <a href="#">
                       <div class="pull-left">
-                        <img src="/assets/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="#" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Support Team
@@ -258,13 +258,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="/assets/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="<?php echo base_url().'assets/img/user1-128x128.jpg' ?>" class="user-image" alt="User Image">
               <span class="hidden-xs">Alexander Pierce</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="/assets/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="<?php echo base_url().'assets/img/user1-128x128.jpg' ?>" class="img-circle" alt="User Image">
 
                 <p>
                   Alexander Pierce - Web Developer
@@ -312,7 +312,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="/assets/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="<?php echo base_url().'assets/img/user1-128x128.jpg' ?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>Alexander Pierce</p>
@@ -506,26 +506,9 @@
     <!-- /.sidebar -->
   </aside>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Dashboard
-        <small>Control panel</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-      </ol>
-    </section>
 
-    <!-- Main content -->
-    <section class="content">
         <?= $contents; ?>
-    </section>
-    <!-- /.content -->
-  </div>
+
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
@@ -768,5 +751,6 @@
 <script src="<?php echo base_url();?>/assets/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url();?>/assets/js/demo.js"></script>
+
 </body>
 </html>
