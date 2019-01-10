@@ -49,6 +49,7 @@ class Payment extends CI_Controller{
             $data['_view'] = 'payment/add';
             $this->load->view('layouts/main',$data);
         }
+        $this->load->view('payment/add');
     }  
 
     /*

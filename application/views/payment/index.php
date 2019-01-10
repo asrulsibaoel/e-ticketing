@@ -1,5 +1,5 @@
 <div class="pull-right">
-	<a href="<?php echo site_url('payment/add'); ?>" class="btn btn-success">Add</a> 
+	<a href="<?php echo base_url('payment/add'); ?>" >[+] Tambah Data</a> 
 </div>
 <table border="1" width="100%">
     <tr>
@@ -18,8 +18,8 @@
 		<td><?php echo $p['payment_date']; ?></td>
 		<td><?php echo $p['payment_amount']; ?></td>
 		<td>
-            <a href="<?php echo site_url('payment/edit/'.$p['id']); ?>">Edit</a> | 
-            <a href="<?php echo site_url('payment/remove/'.$p['id']); ?>">Delete</a>
+            <a href="<?php echo base_url('payment/edit/'.$p['id']); ?>">Edit</a> | 
+            <a href="<?php echo base_url('payment/remove/'.$p['id']); ?>">Delete</a>
         </td>
     </tr>
 	<?php } ?>
