@@ -15,13 +15,17 @@ class Payment extends CI_Controller{
      * Listing of payments
      */
     function index() {
+       try {
         header("Access-Control-Allow-Origin: *");
 	
         $data['payments'] = $this->Payment_model->get_all_payments();
         
-        $data['_view'] = 'payment/index';
         $this->template->set('title', 'Home');
-		$this->template->load('payment/index' , $data);
+        $this->template->load('payment/index' , $data);
+       }
+       catch(Exception $e) {
+        echo 'Message: ' .$e->getMessage();
+      }
     }
 
     /*
@@ -46,7 +50,6 @@ class Payment extends CI_Controller{
 			$this->load->model('Reservation_model');
 			$data['all_reservations'] = $this->Reservation_model->get_all_reservations();
             
-            $data['_view'] = 'payment/add';
             $this->load->view('layouts/main',$data);
         }
         $this->load->view('payment/add');
@@ -79,8 +82,7 @@ class Payment extends CI_Controller{
 				$this->load->model('Reservation_model');
 				$data['all_reservations'] = $this->Reservation_model->get_all_reservations();
 
-                $data['_view'] = 'payment/edit';
-                $this->load->view('layouts/main',$data);
+                $this->load->view('layouts/edit',$data);
             }
         }
         else
