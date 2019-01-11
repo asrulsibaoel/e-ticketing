@@ -4,9 +4,15 @@ if($tampil){
     $username = $tampil->username;
     $nama = $tampil->name;
     $email = $tampil->email;
+    $password = $tampil->password;
     $address = $tampil->address;
     $phone_number = $tampil->phone_number;
-    $photo = $tampil->photo;
+    $photo = (empty($tampil->photo))? "" : $tampil->photo; // TODO : aku belum set field photo di database users. mohon bantuan e set column field iki.
+    $role =  (empty($tampil->role))? "" : $tampil->role; // TODO : aku juga belum set field role. tambahkan juga ya. thanks.
+    
+} else {
+    // TODO: what will happen when variable $tampil isinya kosong?
+
 }
 ?>
 <div class="container mt-5">
@@ -33,7 +39,7 @@ if($tampil){
         </div><!--/col-3-->
     	<div class="col-sm-9">
             <?php echo form_open_multipart("users/ubah/".$id); ?>
-                <div class="form-group">
+            <div class="form-group">
                     
                     <div class="col-xs-6">
                         <label for="username"><h4>Username</h4></label>
@@ -89,7 +95,7 @@ if($tampil){
                     <div class="col-xs-6">
                         <label for="role"><h4>Role</h4></label>
                         <select name="role" id="role" class="form-control">
-                            <option selected><?php echo set_value('role', $tampil->role); ?></option>
+                            <option selected><?php echo set_value('role', $role); ?></option>
                             <option value="user">User</option>
                             <option value="admin">Admin</option>
                         </select>                      
@@ -98,7 +104,7 @@ if($tampil){
                 <div class="form-group">
                     <div class="col-xs-12">
                         <br>
-                        <input class="btn btn-lg btn-success" type="submit" name="submitedit"><i class="glyphicon glyphicon-ok-sign"></button>
+                        <input type="submit" name="submit" value="Ubah" class="btn btn-lg btn-success"><i class="glyphicon glyphicon-ok-sign"></button>
                         <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
                     </div>
                 </div>

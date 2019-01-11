@@ -12,22 +12,38 @@ class Users extends CI_Controller {
 	{
 		header("Access-Control-Allow-Origin: *");
 		$data['tampil'] = $this->users_model->view();
+		
 		$this->template->set('title', 'Home');
 		$this->template->load('home' , $data);
 	}
 
+
+	/**
+	 * TODO: 
+	 * Kasih blok try catch.
+	 * Tambahin validasi kalo username / password kosong.
+	 */
 	public function validasi(){
+		try{
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
-		
 		$row = $this->users_model->get($username);
-		if ($row->password == $password){						
-			$this->session->set_userdata('username',$row->username);			
-			redirect('users');
+		if (!empty($row)) {
+			if ($row->password == $password){
+				$this->session->set_userdata('username',$row->username);
+				$this->session->set_userdata('userId',$row->id);
+				redirect('users');
+			} else {
+				$this->session->set_flashdata('message','Data tidak benar');
+				redirect('users');
+			}	
 		} else {
-			$this->session->set_flashdata('message','Data tidak benar');
-			redirect('users');
-		}		
+			throw new Error("User not found");
+		}
+	}catch(Exception $e){
+		echo 'Message' .$e->getMessage();
+	}
+		
 	}
 
 	public function logout(){
@@ -44,19 +60,22 @@ class Users extends CI_Controller {
 		$this->template->load('edit_profile' , $data);
 	}
 
+	/**
+	 * TODO: Kasih blok try catch
+	 */
 	public function do_upload_edit()
   {
-          $data = array(
-            "username" => $this->input->post('username'),
-            "name" => $this->input->post('nama'),
-            "email" => $this->input->post('email'),
-            "password" => md5($this->input->post('password')),
-            "address" => $this->input->post('alamat'),
-            "phone_number" => $this->input->post('notelp'),
-			"photo" => $_FILES['upload_foto']['name'],
-			"role" => $this->input->post('role')
-          );
-          $config['upload_path']          = './assets/img/';
+	$data = array(
+		"username" => $this->input->post('input_username'),
+		"name" => $this->input->post('input_nama'),
+		"email" => $this->input->post('input_email'),
+		"password" => md5($this->input->post('input_password')),
+		"address" => $this->input->post('input_alamat'),
+		"phone_number" => $this->input->post('input_telp'),
+		"photo" => $_FILES['upload_foto']['name'],
+		"role" => $this->input->post('dropdown_role')
+	  );
+          $config['upload_path']          = './uploads/';
           $config['allowed_types']        = 'gif|jpg|png';
           $config['max_size']             = 400;
           $config['max_width']            = 1024;
@@ -82,7 +101,7 @@ class Users extends CI_Controller {
   }
 
   public function ubah($id){
-    if($this->input->post('submitedit')){ 
+    if($this->input->post('submit')){ 
         $this->do_upload_edit();
         redirect('users/editprofile');
       }

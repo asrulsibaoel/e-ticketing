@@ -1,7 +1,6 @@
 <?php
-if($tampil){
-	$session = $this->session->userdata('username');
-} ?>
+$session = (empty($this->session->userdata('username'))) ? null : $this->session->userdata('username');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,14 +41,16 @@ if($tampil){
 				</li>
 			</ul>
 			<?php
-				if($session == true){ ?>
+				if($session == true){ // ini ngapaaa yak?? d atas variable $session tak liat tadi d set username, kenapa cek nya boolean?
+					//gpp lah sementara sing penting jalan disik. tp sbener e bukan best practice.
+				?>
 				<div class="dropdown">
 					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<?php echo $session; ?>
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<a class="dropdown-item" href="<?php echo site_url('users/editProfile') ?>">Edit Profile</a>
-						<a class="dropdown-item" href="<?php echo site_url('users/logout') ?>">Logout</a>
+						<a class="dropdown-item" href="<?php echo site_url('users/ubah'); ?>">Edit Profile</a>
+						<a class="dropdown-item" href="<?php echo site_url('users/logout'); ?>">Logout</a>
 					</div>
 				</div>
 				<ul class="navbar-nav">
@@ -61,7 +62,7 @@ if($tampil){
 						<button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-info dropdown-toggle">Login <span class="caret"></span></button>
 						<ul class="dropdown-menu dropdown-menu-right mt-2">
 							<li class="px-3 py-2">
-								<form class="form" action="users/validasi" method="post">
+								<form class="form" action="<?php echo site_url('users/validasi'); ?>" method="post">
 										<div class="form-group">
 											<input name="username" placeholder="Email Address" class="form-control form-control-sm" type="text" required="">
 										</div>
