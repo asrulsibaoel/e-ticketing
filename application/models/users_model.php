@@ -28,9 +28,14 @@ class users_model extends CI_Model {
 		return $this->db->get('users')->result();
 	}
 
+	public function save($data){
+    
+		$this->db->insert('users', $data); 
+	}
+
 	public function edit($id,$data){
 		$row = $this->db->where('username',$id)->get('users')->row();
-		unlink('./assets/img/'.$row->photo);
+		unlink('./uploads/'.$row->photo);
 		$this->db->where('username', $id);
 		$this->db->update('users', $data);
 	  }

@@ -21,7 +21,7 @@ if($tampil){
               
 
       <div class="text-center">
-        <img src="<?php echo base_url().'assets/img/'.$photo ?>" class="avatar img-circle img-thumbnail" alt="avatar"><br>
+        <img src="<?php echo base_url().'uploads/'.$photo ?>" class="avatar img-circle img-thumbnail" alt="avatar"><br>
         <br><h4><?php echo $nama; ?></h4>
       </div></hr><br>
 
@@ -38,7 +38,7 @@ if($tampil){
           
         </div><!--/col-3-->
     	<div class="col-sm-9">
-            <?php echo form_open_multipart("users/ubah/".$id); ?>
+            <?php echo form_open_multipart("users/ubah"); ?>
             <div class="form-group">
                     
                     <div class="col-xs-6">

@@ -42,6 +42,15 @@ class Migration_CreateUsersTable extends CI_Migration {
 				'type' => 'TEXT',
 				'null' => TRUE,
 			),
+			'photo' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 50,
+				'null' => TRUE,
+			),
+			'role' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 10,
+			)
 		));
 		$this->dbforge->add_key('id', TRUE);
 		$this->dbforge->create_table($this->tableName);
