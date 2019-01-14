@@ -123,6 +123,8 @@ class Users extends CI_Controller {
 				"photo" => $imagepath,
 				"role" => $this->input->post('role')
 			);
+
+			var_dump($data);
 				
 				$this->users_model->edit($data['username'],$data);
 		}catch(Exception $e){
@@ -134,7 +136,6 @@ class Users extends CI_Controller {
 		if($this->input->post('submitRegister')){
 			$this->do_upload_add();
 			echo "<script>alert('Berhasil mendaftar');window.location = '".base_url('users/index')."';</script>";
-			// redirect('users/index');
 		}
 	}
 
