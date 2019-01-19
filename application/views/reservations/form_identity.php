@@ -57,11 +57,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
             <div class="col-xs-12 col-sm-7 col-md-7 float-left mt-3 mb-3">
                 <h4>Data Pemesan</h4>
-                <form action="#" class="form border h-100 mt-3">
+                <form method="POST" action="<?= base_url('reservation/passengerRegistration')?>" class="form border h-100 mt-3">
                     <div class="form-group mt-3 mb-3">
                         <div class="col-12">
                             <label for="passengeId">NIK/Passport/SIM</label>
-                            <input type="text" class="form-control form-control-sm" name="passengerId" >
+                            <input type="text" class="form-control form-control-sm" name="national_id" >
                         </div>
                         <div class="col-12">
                             <p class="small font-weight-light">Harap isi data sesuai dengan KTP/Passport/SIM</p>
@@ -70,42 +70,42 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="form-group mt-3 mb-3">
                         <div class="col-6 float-left">
                             <label for="passengeFirstrName">Nama Depan</label>
-                            <input type="text" class="form-control form-control-sm" name="passengerFirstName" >
+                            <input type="text" class="form-control form-control-sm" name="first_name" >
                         </div>
                         <div class="col-6 float-right">
                             <label for="passengeLastName">Nama Belakang</label>
-                            <input type="text" class="form-control form-control-sm" name="passengerLastName" >
+                            <input type="text" class="form-control form-control-sm" name="last_name" >
                         </div>
                     </div>
                     <div class="form-group mt-3 mb-3">
                         <div class="col-6 float-left">
                             <label for="passengePhoneNumber">Nomor Telepon</label>
-                            <input type="text" class="form-control form-control-sm" name="passengerPhoneNumber" >
+                            <input type="text" class="form-control form-control-sm" name="phone_number" >
                         </div>
                         <div class="col-6 float-right">
                             <label for="passengeEmailAddress">Email Address</label>
-                            <input type="text" class="form-control form-control-sm" name="passengerEmailAddress" >
+                            <input type="text" class="form-control form-control-sm" name="email_address" >
                         </div>
                     </div>
                     <div class="form-group mt-3 mb-3">
                         <div class="col-6 float-left mt-3">
                             <label for="selectKota">Kota</label>
-                            <select id="selectKota" class="form-control form-control-sm">
+                            <select id="selectKota" class="form-control form-control-sm" name="city">
                                 <option selected>Choose...</option>
-                                <option>Malang</option>
-                                <option>Jakarta</option>
-                                <option>Bali</option>
-                                <option>Yogyakarta</option>
+                                <option value="1">Malang</option>
+                                <option value="2">Jakarta</option>
+                                <option value="3">Yogyakarta</option>
+                                <option value="4">Bali</option>
                             </select>
                         </div>
                         <div class="col-6 float-right mt-3">
-                            <label for="selectProvinsi">Kota</label>
-                            <select id="selectProvinsi" class="form-control form-control-sm">
+                            <label for="selectProvinsi">Provinsi</label>
+                            <select id="selectProvinsi" class="form-control form-control-sm" name="province">
                                 <option selected>Choose...</option>
-                                <option>Jawa Timur</option>
-                                <option>Jawa Tengah</option>
-                                <option>Jawa Barat</option>
-                                <option>Bali</option>
+                                <option value="1">Jawa Timur</option>
+                                <option value="2">Jawa Tengah</option>
+                                <option value="3">Jawa Barat</option>
+                                <option value="4">Bali</option>
                             </select>
                         </div>
                         <div class="col-12 mb-0 mt-0">
@@ -114,8 +114,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                     <div class="form-group mt-2 mb-2">
                         <div class="col-12">
-                            <label for="passengeId">Alamat</label>
-                            <input type="text" class="form-control form-control-sm" name="passengerAddress" >
+                            <label for="address_lines">Alamat</label>
+                            <input type="text" class="form-control form-control-sm" name="address_lines" >
                         </div>
                         <div class="col-12">
                             <p class="small font-weight-light">Harap isi data sesuai dengan KTP/Passport/SIM</p>

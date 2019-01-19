@@ -6,6 +6,8 @@ class Reservation extends CI_Controller {
     public function __construct() {
 		parent::__construct();
 		$this->load->model('Flight_Schedules_Model');
+		$this->load->model('reservations_model');
+		$this->load->model('passenger_model');
 	}
 
 	/**
@@ -68,9 +70,28 @@ class Reservation extends CI_Controller {
     {
         header("Access-Control-Allow-Origin: *");
 
-        if (!empty($_POST)) {
+        if(isset($_POST) && count($_POST) > 0)     
+        {   
+            $params = array(
+				'first_name' => $this->input->post('first_name'),
+				'last_name' => $this->input->post('last_name'),
+				'phone_number' => $this->input->post('phone_number'),
+				'email_address' => $this->input->post('email_address'),
+				'address_lines' => $this->input->post('address_lines'),
+				'city' => $this->input->post('city'),
+				'province' => $this->input->post('province'),
+				'country' => "indonesia",
+				'national_id' => $this->input->post('national_id'),
+				'reservation_id' => 1,
+            );
             
-            redirect("reservation/book");
+            $reservation = $this->passenger_model->add_passenger($params);
+            if ($reservation) {
+                redirect('/');
+            } else {
+                echo "Error";
+            }
+            
         }
         $data = [];
         $this->template->set('title', 'Reservation');
@@ -83,5 +104,17 @@ class Reservation extends CI_Controller {
         $data = [];
         $this->template->set('title', 'Reservation');
         $this->template->load('reservations/register', $data);
+    }
+
+    public function findCustomerReservationsHistory() {
+        header("Access-Control-Allow-Origin: *");
+        $data = [];
+        if (!empty($_GET['national_id'])) {
+            $data['data'] = $this->reservations_model->findByNationalId($_GET['national_id']);
+        }
+        // var_dump($data);
+        $this->template->set('title', 'Reservation');
+        $this->template->load('reservations/find_customer_reservation', $data);
+        
     }
 }
