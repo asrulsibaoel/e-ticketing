@@ -1,3 +1,7 @@
+<?php
+$session = (empty($this->session->userdata('username'))) ? null : $this->session->userdata('username');
+$id = $this->session->userdata('userId');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +29,7 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item active">
-					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+					<a class="nav-link" href="<?php echo site_url('users/index') ?>">Home <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link mr-3" href="#">About Us</a>
@@ -37,58 +41,79 @@
 					<a class="nav-link mr-3" href="#">Contact Us</a>
 				</li>
 			</ul>
-			<ul class="nav navbar-nav flex-row justify-content-between">
-				<li class="dropdown order-1">
-					<button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-info dropdown-toggle">Login <span class="caret"></span></button>
-					<ul class="dropdown-menu dropdown-menu-right mt-2">
-						<li class="px-3 py-2">
-							<form class="form" action="Homepage/validasi" method="post">
-									<div class="form-group">
-										<input name="username" placeholder="Email Address" class="form-control form-control-sm" type="text" required="">
-									</div>
-									<div class="form-group">
-										<input name="password" placeholder="Password" class="form-control form-control-sm" type="text" required="">
-									</div>
-									<div class="form-group">
-										<input type="submit" class="btn btn-primary btn-block" value="Login">
-									</div>
-									<div class="form-group text-center">
-										<small><a href="#" data-toggle="modal" data-target="#modalPassword">Forgot password?</a></small>
-									</div>
-							</form>
-						</li>
-					</ul>
-				</li>
-			</ul>
-			<ul class="nav navbar-nav flex-row justify-content-between ml-2">
-				<li class="dropdown order-1">
-					<button type="button" id="dropdownMenu2" data-toggle="dropdown" class="btn btn-info dropdown-toggle">Register <span class="caret"></span></button>
-					<ul class="dropdown-menu dropdown-menu-right mt-2">
-						<li class="px-3 py-2">
-							<form class="form" role="form">
-									<div class="form-group">
-										<h5>Register a New Account</h5>
-									</div>
-									<div class="form-group">
-										<input id="nameInput" placeholder="Name" class="form-control form-control-sm" type="text" required="">
-									</div>
-									<div class="form-group">
-										<input id="phoneInput" placeholder="Phone Number" class="form-control form-control-sm" type="text" required="">
-									</div>
-									<div class="form-group">
-										<input id="emailInput" placeholder="Email Address" class="form-control form-control-sm" type="text" required="">
-									</div>
-									<div class="form-group">
-										<input id="passwordInput" placeholder="Password" class="form-control form-control-sm" type="text" required="">
-									</div>
-									<div class="form-group">
-										<button type="submit" class="btn btn-primary btn-block">Get Started</button>
-									</div>
-							</form>
-						</li>
-					</ul>
-				</li>
-			</ul>	
+			<?php
+				if($session == true){ // ini ngapaaa yak?? d atas variable $session tak liat tadi d set username, kenapa cek nya boolean?
+					//gpp lah sementara sing penting jalan disik. tp sbener e bukan best practice.
+				?>
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<?php echo $session; ?>
+					</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<a class="dropdown-item" href="<?php echo site_url('users/ubah'); ?>">Edit Profile</a>
+						<a class="dropdown-item" href="<?php echo site_url('users/logout'); ?>">Logout</a>
+					</div>
+				</div>
+				<ul class="navbar-nav">
+						<li class="nav-item"></li>
+				</ul>
+				<?php }else{ ?>
+				<ul class="nav navbar-nav flex-row justify-content-between">
+					<li class="dropdown order-1">
+						<button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-info dropdown-toggle">Login <span class="caret"></span></button>
+						<ul class="dropdown-menu dropdown-menu-right mt-2">
+							<li class="px-3 py-2">
+								<form class="form" action="<?php echo site_url('users/validasi'); ?>" method="post">
+										<div class="form-group">
+											<input name="username" placeholder="Email Address" class="form-control form-control-sm" type="text" required="">
+										</div>
+										<div class="form-group">
+											<input name="password" placeholder="Password" class="form-control form-control-sm" type="password" required="">
+										</div>
+										<div class="form-group">
+											<input type="submit" class="btn btn-primary btn-block" value="Login">
+										</div>
+										<div class="form-group text-center">
+											<small><a href="#" data-toggle="modal" data-target="#modalPassword">Forgot password?</a></small>
+										</div>
+								</form>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav flex-row justify-content-between ml-2">
+					<li class="dropdown order-1">
+						<button type="button" id="dropdownMenu2" data-toggle="dropdown" class="btn btn-info dropdown-toggle">Register <span class="caret"></span></button>
+						<ul class="dropdown-menu dropdown-menu-right mt-2">
+							<li class="px-3 py-2">
+								<form class="form" role="form" action="<?php echo site_url('users/tambah'); ?>" method="post">
+										<div class="form-group">
+											<h5>Register a New Account</h5>
+										</div>
+										<div class="form-group">
+											<input name="nameInput" placeholder="Name" class="form-control form-control-sm" type="text" required="">
+										</div>
+										<div class="form-group">
+											<input name="usernameInput" placeholder="Username" class="form-control form-control-sm" type="text" required="">
+										</div>
+										<div class="form-group">
+											<input name="emailInput" placeholder="Email Address" class="form-control form-control-sm" type="text" required="">
+										</div>
+										<div class="form-group">
+											<input name="phoneInput" placeholder="Phone Number" class="form-control form-control-sm" type="text" required="">
+										</div>
+										<div class="form-group">
+											<input name="passwordInput" placeholder="Password" class="form-control form-control-sm" type="password" required="">
+										</div>
+										<div class="form-group">
+											<input type="submit" class="btn btn-primary btn-block" value="Register" name="submitRegister">
+										</div>
+								</form>
+							</li>
+						</ul>
+					</li>
+            	</ul>
+			<?php }?>	
 		</div>
 	</div>
 </nav>

@@ -22,7 +22,6 @@ class Template {
     function load($view = '' , $view_data = array(), $template = 'main', $return = FALSE)
     {
         $this->setContentBody($this->CI->load->view($view, $view_data, TRUE));
-        
         $this->CI->load->view('layouts/'.$template, $this->template_data);
     }
                                
