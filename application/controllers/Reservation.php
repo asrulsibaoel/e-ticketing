@@ -3,6 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Reservation extends CI_Controller {
 
+    public function __construct() {
+		parent::__construct();
+		$this->load->model('Flight_Schedules_Model');
+	}
+
 	/**
 	 * Index Page for this controller.
 	 *
@@ -28,15 +33,20 @@ class Reservation extends CI_Controller {
 		$this->template->load('reservations/index' , $data);
     }
 
+    public function findDepature() {
+
+    }
+
     public function findTicketDeparture()
     {
         header("Access-Control-Allow-Origin: *");
+        $query = [];
 
-        if (!empty($_POST)) {
-            
-            redirect("reservation/book");
+        if (!empty($_GET['depature_from']) && !empty($_GET['depature_date'])) {
+            $query['depature_from'] = $_GET['depature_from'];
+            $query['depature_date'] = $_GET['depature_date'];
         }
-        $data = [];
+        $data = $this->Flight_Schedules_Model->findAll($query);
         $this->template->set('title', 'Reservation');
         $this->template->load('reservations/find_ticket_departure', $data);
     }
@@ -46,7 +56,7 @@ class Reservation extends CI_Controller {
         header("Access-Control-Allow-Origin: *");
 
         if (!empty($_POST)) {
-            
+            //do something
             redirect("reservation/book");
         }
         $data = [];
