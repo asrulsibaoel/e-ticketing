@@ -49,4 +49,32 @@ class reservations_model extends CI_Model
     {
         return $this->db->delete('reservations',array('id'=>$id));
     }
+
+    public function findByNationalId($national_id) {
+        $this->db->order_by('reservation_date', 'desc');
+        $this->db->select(
+            '
+            reservations.id  as reservation_id,
+            national_id,
+            first_name,
+            last_name,
+            address_lines,
+            city,
+            province,
+            country,
+            reservation_date,
+            depature.airport_name as depature_from,
+            destination.airport_name as arrival_to,
+            aircraft_name
+            '
+        );
+        $this->db->where('national_id', $national_id);
+        $this->db->join('reservations', 'reservations.passenger_id = passengers.id', "left");
+        $this->db->join('flight_schedules', 'reservations.flight_schedule_id = flight_schedules.id', "left");
+        $this->db->join('airports as depature', 'flight_schedules.airport_id = depature.id', "left");
+        $this->db->join('airports as destination', 'flight_schedules.airport_destination_id = destination.id', "left");
+        $this->db->join('aircrafts', 'flight_schedules.aircraft_id = aircrafts.id', "left");
+        return $this->db->get('passengers')->result();
+    }
+    
 }
