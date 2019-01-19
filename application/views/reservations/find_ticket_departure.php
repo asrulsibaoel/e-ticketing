@@ -20,105 +20,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
             </form>
         </div>
+
+        <?php  foreach($data as $key => $val) {?>
         <div class="col-md-12 border mt-2">
             <div class="col-sm-12">
-                <img src="<?php echo base_url('/assets/images/logo_maskapai/garuda.png'); ?>" alt="img-logo" class="img-fluid mt-3 mb-3 float-sm-left" width="36px" height="20px"><p class="mt-3 ml-3 float-sm-left">Garuda Indonesia</p> 
+                <img src="<? $val->upload_foto; ?>" alt="img-logo" class="img-fluid mt-3 mb-3 float-sm-left" width="36px" height="20px"><p class="mt-3 ml-3 float-sm-left"><?= $val->maskapai->nama;?></p> 
             </div>
             <br>
             <div class=" col-12 mt-4">
                 <div class="col-sm-3 float-right mt-1">
-                    <button class="btn btn-info justify-content-center float-right">Pilih Pergi</button>
+                    <a class="btn btn-info justify-content-center float-right" href="<?= base_url("Reservation/selectFlightDepature/". $val->id)?>">Pilih Pergi</a>
                 </div>
                 <div class="col-sm-3 float-right mt-2">
-                    <p>Rp.850.000,00/Org</p>&nbsp;
+                    <p><?= $val->price; ?></p>&nbsp;
                 </div>
                 <div class="col-sm-3 float-right mt-2">
                     <p>1 jam 5 mnt</p>
                 </div>
                 <div class="col-sm-3 float-left">
-                    <p>14.15 (Malang) 16.20 (Bali)</p>
+                    <p>
+                    <?php echo date("d-m-Y H:i:s", strtotime($val->depature_date_time)); ?> 
+                    - <?php echo date("d-m-Y H:i:s", strtotime($val->arrival_date_time)); ?></p>
                 </div>
             </div>
         </div>
-        <div class="col-md-12 border mt-2">
-            <div class="col-sm-12">
-                <img src="<?php echo base_url('/assets/images/logo_maskapai/garuda.png'); ?>" alt="img-logo" class="img-fluid mt-3 mb-3 float-sm-left" width="36px" height="20px"><p class="mt-3 ml-3 float-sm-left">Garuda Indonesia</p> 
-            </div>
-            <br>
-            <div class=" col-12 mt-4">
-                <div class="col-sm-3 float-right mt-1">
-                    <button class="btn btn-info justify-content-center float-right">Pilih Pergi</button>
-                </div>
-                <div class="col-sm-3 float-right mt-2">
-                    <p>Rp.850.000,00/Org</p>&nbsp;
-                </div>
-                <div class="col-sm-3 float-right mt-2">
-                    <p>1 jam 5 mnt</p>
-                </div>
-                <div class="col-sm-3 float-left">
-                    <p>14.15 (Malang) 16.20 (Bali)</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12 border mt-2">
-            <div class="col-sm-12">
-                <img src="<?php echo base_url('/assets/images/logo_maskapai/garuda.png'); ?>" alt="img-logo" class="img-fluid mt-3 mb-3 float-sm-left" width="36px" height="20px"><p class="mt-3 ml-3 float-sm-left">Garuda Indonesia</p> 
-            </div>
-            <br>
-            <div class=" col-12 mt-4">
-                <div class="col-sm-3 float-right mt-1">
-                    <button class="btn btn-info justify-content-center float-right">Pilih Pergi</button>
-                </div>
-                <div class="col-sm-3 float-right mt-2">
-                    <p>Rp.850.000,00/Org</p>&nbsp;
-                </div>
-                <div class="col-sm-3 float-right mt-2">
-                    <p>1 jam 5 mnt</p>
-                </div>
-                <div class="col-sm-3 float-left">
-                    <p>14.15 (Malang) 16.20 (Bali)</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12 border mt-2">
-            <div class="col-sm-12">
-                <img src="<?php echo base_url('/assets/images/logo_maskapai/garuda.png'); ?>" alt="img-logo" class="img-fluid mt-3 mb-3 float-sm-left" width="36px" height="20px"><p class="mt-3 ml-3 float-sm-left">Garuda Indonesia</p> 
-            </div>
-            <br>
-            <div class=" col-12 mt-4">
-                <div class="col-sm-3 float-right mt-1">
-                    <button class="btn btn-info justify-content-center float-right">Pilih Pergi</button>
-                </div>
-                <div class="col-sm-3 float-right mt-2">
-                    <p>Rp.850.000,00/Org</p>&nbsp;
-                </div>
-                <div class="col-sm-3 float-right mt-2">
-                    <p>1 jam 5 mnt</p>
-                </div>
-                <div class="col-sm-3 float-left">
-                    <p>14.15 (Malang) 16.20 (Bali)</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12 border mt-2">
-            <div class="col-sm-12">
-                <img src="<?php echo base_url('/assets/images/logo_maskapai/garuda.png'); ?>" alt="img-logo" class="img-fluid mt-3 mb-3 float-sm-left" width="36px" height="20px"><p class="mt-3 ml-3 float-sm-left">Garuda Indonesia</p> 
-            </div>
-            <br>
-            <div class=" col-12 mt-4">
-                <div class="col-sm-3 float-right mt-1">
-                    <button class="btn btn-info justify-content-center float-right">Pilih Pergi</button>
-                </div>
-                <div class="col-sm-3 float-right mt-2">
-                    <p>Rp.850.000,00/Org</p>&nbsp;
-                </div>
-                <div class="col-sm-3 float-right mt-2">
-                    <p>1 jam 5 mnt</p>
-                </div>
-                <div class="col-sm-3 float-left">
-                    <p>14.15 (Malang) 16.20 (Bali)</p>
-                </div>
-            </div>
-        </div>
+        <?php } ?>
     </div>
 </div>

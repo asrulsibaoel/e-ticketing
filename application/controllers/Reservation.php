@@ -46,7 +46,7 @@ class Reservation extends CI_Controller {
             $query['depature_from'] = $_GET['depature_from'];
             $query['depature_date'] = $_GET['depature_date'];
         }
-        $data = $this->Flight_Schedules_Model->findAll($query);
+        $data['data'] = $this->Flight_Schedules_Model->findAll($query);
         $this->template->set('title', 'Reservation');
         $this->template->load('reservations/find_ticket_departure', $data);
     }

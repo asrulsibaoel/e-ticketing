@@ -121,6 +121,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <p class="small font-weight-light">Harap isi data sesuai dengan KTP/Passport/SIM</p>
                         </div>
                     </div>
+                    <div class="form-group mt-2 mb-2">
+                        <div class="col-12">
+                            <input type="submit" class="btn btn-info float-right" name="submit" value="Daftar">
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
