@@ -12,6 +12,7 @@ $id = $this->session->userdata('userId');
 	<!-- bootstrap & fontawesome -->
 	<link rel="stylesheet" href="<?php echo base_url();?>assets/user_assets/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="<?php echo base_url();?>assets/user_assets/css/style.css" />
+	<link rel="stylesheet" href="<?php echo base_url();?>assets/user_assets/css/bootstrap-timepicker.min.css" />
 	<!-- page specific plugin styles -->
 </head>
  
